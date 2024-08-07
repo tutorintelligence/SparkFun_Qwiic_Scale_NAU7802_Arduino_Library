@@ -61,8 +61,6 @@ bool NAU7802::begin(TwoWire &wirePort, bool initialize)
     adc |= 0x30;
     result &= setRegister(NAU7802_ADC, adc);
 
-    result &= setBit(NAU7802_PGA_PWR_PGA_CAP_EN, NAU7802_PGA_PWR); //Enable 330pF decoupling cap on chan 2. From 9.14 application circuit note.
-
     result &= clearBit(NAU7802_PGA_LDOMODE, NAU7802_PGA); //Ensure LDOMODE bit is clear - improved accuracy and higher DC gain, with ESR < 1 ohm
 
     delay(_ldoRampDelay); //Wait for LDO to stabilize - takes about 200ms
